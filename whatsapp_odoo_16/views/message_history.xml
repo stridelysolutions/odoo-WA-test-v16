@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_message_history_search" model="ir.ui.view">
+        <field name="name">WhatsApp Message History Search</field>
+        <field name="model">message.history</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/> 
+            </search>
+        </field>
+    </record>
+
+    <record id="action_message_history_tree" model="ir.ui.view">
+        <field name="name">WhatsApp Message History Tree</field>
+        <field name="model">message.history</field>
+        <field name="arch" type="xml">
+           <tree decoration-danger="status == 'error'" decoration-success="status == 'success'">
+                <field name="name" />
+                <field name="mobile" />
+                <field name="message" />
+                <field name="attachment_ids" widget="many2many_binary"/>
+                <field name="status" />
+                <field name="active" invisible='1'/>
+           </tree>
+        </field>
+    </record>
+
+    <record id="action_message_history_form" model="ir.ui.view">
+        <field name="name">WhatsApp Message History Form</field>
+        <field name="model">message.history</field>
+        <field name="arch" type="xml">
+           <form>
+              <sheet>
+                <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                <group>
+                    <field name="name" />
+                    <field name="mobile" />
+                    <field name="message" />
+                    <field name="attachment_ids" widget="many2many_binary"/>
+                    <field name="message_error" />
+                    <field name="active" invisible='1'/>
+                </group>
+               </sheet>
+           </form>
+        </field>
+    </record>
+
+    <record id="action_whatsapp_message_history_view" model="ir.actions.act_window">
+        <field name="name">WhatsApp Message History</field>
+        <field name="res_model">message.history</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate Message History
+            </p>
+        </field>
+    </record>
+    
+    <menuitem 
+      name="History" 
+      id="menu_message_history" 
+      parent="menu_whatsapp" 
+      sequence="4"
+      action="action_whatsapp_message_history_view"/>
+
+</odoo>

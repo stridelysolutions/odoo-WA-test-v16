@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record model="ir.ui.view" id="res_partner_tree_view_inherited_123">
+        <field name="name">res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+             <field name="category_id" position="after">
+                <field name="whatsapp_no"/>
+                <field name="active_wati_contacts" invisible='1'/>
+             </field>
+             <field name="company_id" position="after">
+                <button name="change_active_whatsapp" string="Add WhatsApp Contact" type="object" class="btn-primary" attrs="{'invisible': [('active_wati_contacts', '=', True)]}"/>
+             </field>
+        </field>
+    </record> -->
+
+    <record model="ir.ui.view" id="res_partner_form_view_inherited">
+        <field name="name">res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//form/sheet" position="before">
+                <header>
+                    <button name="change_active_whatsapp_no" string="Add WhatsApp Contact" type="object" class="btn-primary" attrs="{'invisible': [('active_wati_contacts', '=', True)]}"/>
+                </header>
+             </xpath>
+             <field name="category_id" position="after">
+                <field name="whatsapp_no"/>
+                <div>
+                  <span style="color:red">* </span>WhatsApp Number with country code. Example, 85264318721
+                </div>
+                <field name="active_wati_contacts" invisible='1'/>
+             </field>
+        </field>
+    </record>
+</odoo>

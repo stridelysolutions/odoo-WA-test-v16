@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_whatsapp_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.whatsapp</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+               <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="WhatsApp" string="WhatsApp" data-key="whatsapp_odoo">
+                        <h2>WhatsApp Configuration</h2>
+                        <div class="row mt16 o_settings_container" name="catalog_setting_container">
+                            <div class="col-12 col-lg-6 o_setting_box" id="whatsapp">
+                                    <div class="o_setting_left_pane">
+                                        <field name="whats_app"/>
+                                    </div>
+                                    <div class="o_setting_right_pane" id="whatsapp_settings">
+                                        <label for="whats_app"/>
+                                        <div class="text-muted">
+                                            Whats App 
+                                        </div>
+                                        <div class="content-group" id="whats_app_id">
+                                            <div class="mt16 row" attrs="{'invisible': [('whats_app', '=', False)]}">
+                                                <label for="token_key" string="Access Token" class="col-3 o_light_label"/>
+                                                <field name="token_key" attrs="{'required': [('whats_app','=', True)]}"/>
+                                                <label for="end_point" string="End Point" class="col-3 o_light_label"/>
+                                                <field name="end_point" attrs="{'required': [('whats_app','=', True)]}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                         </div>
+                    </div>
+                </xpath>
+            </field>
+    </record>
+    <record id="action_whatsapp_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_whatsapp_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'whatsapp_odoo', 'bin_size': False}</field>
+    </record>
+
+    <menuitem id="menu_whatsapp_config"
+            name="Configuration"
+            parent="menu_whatsapp"
+            sequence="5"
+           />
+    <menuitem id="menu_whatsapp_general_settings"
+        name="Settings"
+        parent="menu_whatsapp_config"
+        action="action_whatsapp_config_settings"
+        />
+</odoo>

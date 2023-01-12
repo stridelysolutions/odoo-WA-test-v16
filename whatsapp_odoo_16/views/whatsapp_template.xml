@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_whatsapp_template_tree" model="ir.ui.view">
+        <field name="name">WhatsApp Template</field>
+        <field name="model">whatsapp.template</field>
+        <field name="arch" type="xml">
+           <tree>
+                <field name="create_date" />
+                <field name="subject" />
+           </tree>
+        </field>
+    </record>
+
+    <record id="action_whatsapp_template_form" model="ir.ui.view">
+        <field name="name">WhatsApp Template</field>
+        <field name="model">whatsapp.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="send_msg" type="object" string="Send" class="oe_highlight"/>
+                </header>
+                <group>
+                    <field name="subject" />
+                    <field name="list_id" />
+                    <field name="template_id" />
+                </group>
+                <!-- <group> -->
+                  <notebook>
+                      <page name="body" string="Body">
+                          <div class="position-relative">
+                                <div class="mt-n2">
+                                    <field name="body_html"
+                                    options="{
+                                                'cssEdit': 'mass_mailing.iframe_css_assets_edit',
+                                                'dynamic_placeholder': true,
+                                                'cssReadonly': 'mass_mailing.iframe_css_assets_edit'
+                                        }"
+                                    />
+                                </div>
+                          </div>
+                      </page>
+                  </notebook>
+                <!-- </group> -->
+            </form>
+        </field>
+    </record>
+
+    <record id="action_whatsapp_template" model="ir.actions.act_window">
+        <field name="name">WhatsApp Template </field>
+        <field name="res_model">whatsapp.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate Whatsapp Template
+            </p>
+        </field>
+    </record>
+    
+    <menuitem 
+      name="WhatsApp" 
+      id="menu_whatsapp"/>
+    
+    <menuitem 
+      name="WhatsApp Template" 
+      id="menu_whatsapp_template" 
+      parent="menu_whatsapp" 
+      sequence="1"
+      action="action_whatsapp_template"/>
+</odoo>

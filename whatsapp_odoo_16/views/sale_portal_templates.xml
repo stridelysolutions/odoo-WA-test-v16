@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_order_portal_content" inherit_id='sale.sale_order_portal_content'>
+        <xpath expr="//t[@t-set='report_url']" position="after">
+             <t t-set="report_url" t-value="i.get_portal_url(report_type='pdf', download=False)"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <record id="action_whatsapp_template_design_tree" model="ir.ui.view">
+        <field name="name">WhatsApp Body Design</field>
+        <field name="model">template.design</field>
+        <field name="arch" type="xml">
+           <form class="o_mass_mailing_mailing_form">
+                <group name="name">
+                    <field name="name" />
+                </group>
+                <notebook>
+                    <page name="body" string="Body">
+                                <div class="position-relative">
+                                    <div class="mt-n2">
+                                        <field name="body_arch" widget="whatsapp_html"
+                                           options="{
+                                                'snippets': 'mass_mailing.email_designer_snippets',
+                                                'cssEdit': 'mass_mailing.iframe_css_assets_edit',
+                                                'inline-field': 'body_html',
+                                                'dynamic_placeholder': true,
+                                                'cssReadonly': 'mass_mailing.iframe_css_assets_edit'
+                                        }"
+                                        />
+                                    </div>
+                                </div>
+                    </page>
+                </notebook>
+           </form>
+        </field>
+    </record>                                                                                      
+
+    <record id="action_whatsapp_template_design_view" model="ir.actions.act_window">
+        <field name="name">WhatsApp Body Design </field>
+        <field name="res_model">template.design</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate Whatsapp Design List
+            </p>
+        </field>
+    </record>
+    
+    <menuitem 
+      name="WhatsApp Design " 
+      id="menu_whatsapp_template_design" 
+      parent="menu_whatsapp" 
+      sequence="3"
+      action="action_whatsapp_template_design_view"/>
+
+</odoo>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="whatsapp_list_form" model="ir.ui.view">
+        <field name="name">WhatsApp List</field>
+        <field name="model">whatsapp.list</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                    <field name="name" required="1"/>
+                    </group>
+                    <group>
+                    <field name="customer_ids">
+                        <tree>
+                            <field name="display_name" string="Name"/>
+                            <field name="whatsapp_no" />    
+                        </tree>
+                    </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+  </record>
+
+    <record id="action_whatsapp_list_view" model="ir.actions.act_window">
+        <field name="name">WhatsApp List </field>
+        <field name="res_model">whatsapp.list</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate Whatsapp List
+            </p>
+        </field>
+    </record>
+    
+    <menuitem 
+      name="WhatsApp List" 
+      id="menu_whatsapp_list" 
+      parent="menu_whatsapp" 
+      sequence="2"
+      action="action_whatsapp_list_view"/>
+
+</odoo>
